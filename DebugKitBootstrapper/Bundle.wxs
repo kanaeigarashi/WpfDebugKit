@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs"
+     xmlns:util="http://wixtoolset.org/schemas/v4/wxs/util"
+     xmlns:bal="http://wixtoolset.org/schemas/v4/wxs/bal">
+  <Bundle Name="DebugKit" Manufacturer="Kanae Igarashi" Version="1.0.0.0" UpgradeCode="DFBC223A-D5A3-4FF7-A36B-9FD52388158C">
+    <BootstrapperApplication>
+      <bal:WixStandardBootstrapperApplication LicenseUrl="" Theme="hyperlinkLicense" />
+    </BootstrapperApplication>
+    
+    <Chain>
+      <ExePackage
+        DetectCondition="true"
+        UninstallArguments="-uninstall"
+        Permanent="no"
+        CacheId="VS_RemoteTools">
+        <ExePackagePayload 
+          Name="VS_RemoteTools.exe"
+          DownloadUrl="https://aka.ms/vs/17/release/RemoteTools.amd64ret.enu.exe" 
+          CertificatePublicKey="597A58F3E398F113D0B4305649AEB6DCAD457361"
+          CertificateThumbprint="C2048FB509F1C37A8C3E9EC6648118458AA01780"
+          Size="87141568" 
+          Version="17.0.34728.123"/>
+      </ExePackage>
+      
+      <MsiPackage SourceFile="$(DebugKitSetup.TargetDir)$(DebugKitSetup.TargetFileName)" ForcePerMachine="yes" />      
+    </Chain>
+  </Bundle>
+
+  <Fragment>
+    <StandardDirectory Id="ProgramFiles6432Folder">
+      <Directory Id="REMOTEDEBUGGER_INSTALLFOLDER" Name="Microsoft Visual Studio 17.0\Common7\IDE\Remote Debugger\x64" />
+    </StandardDirectory>
+    <util:FileSearch Id="CheckRemoteDebugger" Variable="ExistRemoteDebbuger" Path="[REMOTEDEBUGGER_INSTALLFOLDER]msvsmon.exe" Result="exists" />
+  </Fragment>
+</Wix>

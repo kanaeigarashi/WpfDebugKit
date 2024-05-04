@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+  <Fragment>
+    <ComponentGroup Id="SpyComponents" Directory="INSTALLFOLDER">
+      <Component>
+        <File Source="C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\Tools\spyxx.exe" />
+      </Component>
+      <Component>
+        <File Source="C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\Tools\spyxx_amd64.exe" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+</Wix>

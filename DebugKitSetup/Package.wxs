@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+  <Package Name="DebugKit" Manufacturer="Kanae Igarashi" Version="1.0.0.0" UpgradeCode="67875A6D-C41F-4D72-81DC-4BFE3DEF15E9">
+    <MediaTemplate EmbedCab="yes" />    
+    <Feature Id="Main">
+      <ComponentGroupRef Id="SpyComponents" />
+      <ComponentGroupRef Id="DisableFirewallScriptComponents" />
+      <ComponentRef Id="RemoveFolderComponent" />
+    </Feature>
+    <InstallExecuteSequence>
+      <Custom Action="CreateRemoteDebuggerShortcutAction" After="InstallInitialize" Condition="ExistRemoteDebbuger"></Custom>
+      <Custom Action="DisableFirewallAction" After="InstallServices" Condition="NOT Installed"></Custom>
+    </InstallExecuteSequence>
+  </Package>
+
+</Wix>

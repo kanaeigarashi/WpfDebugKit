@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+  <Fragment>
+    <StandardDirectory Id="ProgramFiles6432Folder">
+      <Directory Name="!(bind.Property.Manufacturer)" >
+        <Directory Id="INSTALLFOLDER" Name="!(bind.Property.ProductName)">
+          <Component Id="RemoveFolderComponent" Guid="3F71F366-5AE1-4C13-AF4E-A756CC6D3AB1">
+            <RemoveFolder Id="RemoveFolderComponent" On="uninstall" />
+          </Component>
+        </Directory>
+      </Directory>
+    </StandardDirectory>
+  </Fragment>
+</Wix>

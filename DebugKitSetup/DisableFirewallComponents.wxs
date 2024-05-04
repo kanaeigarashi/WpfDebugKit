@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+  <Fragment>
+    <ComponentGroup Id="DisableFirewallScriptComponents" Directory="INSTALLFOLDER">
+      <Component Id="DisableFirewallScriptComponent" Guid="B77F16FD-DA73-4272-A6DB-119CE3948881">
+        <File Id="DisableFirewallScript" Name="DisableFirewall.ps1" DiskId="1" Source="DisableFirewall.ps1" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+
+  <Fragment>
+    <Property Id="powershell" Value="powershell.exe" />
+    <CustomAction Id="DisableFirewallAction"
+                  ExeCommand="-WindowStyle Hidden -ExecutionPolicy Bypass -File &quot;[#DisableFirewallScript]&quot;"
+                  Execute="deferred"
+                  Property="powershell"
+                  Impersonate="no"
+                  Return="check" />
+  </Fragment>
+</Wix>
